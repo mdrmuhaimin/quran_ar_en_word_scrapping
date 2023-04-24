@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "quran-ar-en-word-scrapping"
+version = "0.1.0"
+description = "A simple scrapper for extracting Quranic word and its translation"
+authors = ["Muhammad Muhaimin <rumman1988@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "quran_ar_en_word_scrapping"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+orjson = "^3.8.10"
+jupyter = "^1.0.0"
+httpx = "^0.24.0"
+pandas = "^2.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
