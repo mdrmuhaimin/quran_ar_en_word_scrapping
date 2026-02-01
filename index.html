@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80/20 Quran Vocabulary</title>
+    <!-- Google Fonts: Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- PapaParse -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>80/20 Quran Vocabulary</h1>
+        <p>Master the most frequent words of the Quran.</p>
+        <div id="loading" class="loading">Loading data...</div>
+    </header>
+
+    <main>
+        <section id="global-section">
+            <h2>High Frequency Deck (Top 50)</h2>
+            <p class="subtitle">These words appear most frequently throughout the Quran.</p>
+            <div id="global-deck" class="card-grid"></div>
+        </section>
+
+        <section id="surah-section">
+            <h2>Surah Specific Prep</h2>
+            <div class="controls">
+                <label for="surah-select">Select a Surah:</label>
+                <select id="surah-select">
+                    <option value="" disabled selected>Choose a Surah...</option>
+                </select>
+            </div>
+            <p class="subtitle">Top 20 frequent words in the selected Surah.</p>
+            <div id="surah-deck" class="card-grid"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
