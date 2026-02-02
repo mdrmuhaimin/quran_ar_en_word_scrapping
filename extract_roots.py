@@ -116,7 +116,7 @@ def parse_sql_dump(filepath):
                 if current_table == 'rootword':
                     if len(parts) >= 2:
                         rid = int(parts[0])
-                        rword = parts[1]
+                        rword = parts[1].replace(' ', '')
                         tables['rootword'][rid] = rword
 
                 elif current_table == 'arabicword':
@@ -157,7 +157,9 @@ def main():
          open(OUTPUT_TSV_PATH, 'w', encoding='utf-8', newline='') as outfile:
 
         reader = csv.DictReader(infile, delimiter='\t')
-        fieldnames = reader.fieldnames + ['root']
+        fieldnames = reader.fieldnames
+        if 'root' not in fieldnames:
+            fieldnames = fieldnames + ['root']
         writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter='\t')
 
         writer.writeheader()

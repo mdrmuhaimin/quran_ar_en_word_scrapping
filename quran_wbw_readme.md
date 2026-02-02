@@ -20,7 +20,7 @@ This document provides a technical analysis of the `quran_word_translation.tsv` 
 | `en`   | String  | English translation of the word.                 | `In (the) name`   |
 | `bn`   | String  | Bengali translation of the word.                 | `নামে`            |
 | `surah`| Integer | The chapter (Surah) number (1-114).              | `1`               |
-| `root` | String  | The Arabic root of the word (spaced letters).    | `س م و`           |
+| `root` | String  | The Arabic root of the word.                     | `سمو`             |
 
 ## Data Statistics
 
