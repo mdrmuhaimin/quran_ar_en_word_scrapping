@@ -20,6 +20,7 @@ This document provides a technical analysis of the `quran_word_translation.tsv` 
 | `en`   | String  | English translation of the word.                 | `In (the) name`   |
 | `bn`   | String  | Bengali translation of the word.                 | `নামে`            |
 | `surah`| Integer | The chapter (Surah) number (1-114).              | `1`               |
+| `root` | String  | The Arabic root of the word (spaced letters).    | `س م و`           |
 
 ## Data Statistics
 
@@ -31,6 +32,7 @@ This document provides a technical analysis of the `quran_word_translation.tsv` 
 ### Integrity
 - The dataset is complete with no missing values in any of the 6 columns.
 - `page`, `ayah`, and `surah` contain valid integer values within expected ranges.
+- `root` column contains the triliteral (or otherwise) root of the word, derived from the Quranic Corpus.
 
 ## Parsing Instructions
 
@@ -59,7 +61,8 @@ FUNCTION parse_quran_dataset(filepath):
             "ar":    columns[2],
             "en":    columns[3],
             "bn":    columns[4],
-            "surah": CONVERT_TO_INT(columns[5])
+            "surah": CONVERT_TO_INT(columns[5]),
+            "root":  columns[6]
         }
 
         ADD record TO quran_data
