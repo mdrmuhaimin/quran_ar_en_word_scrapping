@@ -1,12 +1,10 @@
-// db.js - Handles SQLite connection, persistence, and queries
-
-const DB_NAME = "quran_learning_v1";
-const TSV_FILE = "quran_word_translation.tsv";
-
 // Common particles to exclude from "High Frequency" deck
 const STOP_WORDS = [
     "فِي", "ٱلَّذِينَ", "مِن", "مَا", "لَا", "وَلَا", "إِنَّ", "إِلَّا", "وَمَا", "أَن", "مِنَ", "عَلَىٰ", "ثُمَّ", "مِّن", "مِّنَ", "يَٰٓأَيُّهَا", "إِذَا"
 ];
+
+const DB_NAME = "QuranLearningDB";
+const TSV_FILE = "quran_word_translation.tsv";
 
 const DB = {
     db: null,
@@ -42,6 +40,7 @@ const DB = {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 arabic TEXT,
                 english TEXT,
+                bengali TEXT,
                 frequency INTEGER,
                 surah_counts TEXT -- JSON string: {"1": 5, "2": 10}
             );
@@ -86,7 +85,8 @@ const DB = {
 
         rows.forEach(row => {
             const word = row.ar;
-            const meaning = row.en;
+            const meaningEn = row.en;
+            const meaningBn = row.bn;
             const surahId = row.surah; // keep as string key
 
             if (!word) return;
@@ -94,7 +94,8 @@ const DB = {
             if (!wordMap.has(word)) {
                 wordMap.set(word, {
                     arabic: word,
-                    english: meaning, // Taking the first meaning found
+                    english: meaningEn, // Taking the first meaning found
+                    bengali: meaningBn,
                     count: 0,
                     surah_counts: {}
                 });
@@ -110,12 +111,13 @@ const DB = {
 
         // Insert into DB
         this.db.run("BEGIN TRANSACTION");
-        const stmt = this.db.prepare("INSERT INTO words (arabic, english, frequency, surah_counts) VALUES (?, ?, ?, ?)");
+        const stmt = this.db.prepare("INSERT INTO words (arabic, english, bengali, frequency, surah_counts) VALUES (?, ?, ?, ?, ?)");
 
         for (const [key, val] of wordMap) {
             stmt.run([
                 val.arabic,
                 val.english,
+                val.bengali,
                 val.count,
                 JSON.stringify(val.surah_counts)
             ]);

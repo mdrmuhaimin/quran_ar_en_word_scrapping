@@ -17,34 +17,99 @@
 <body>
 
     <header>
-        <div class="language-control">
-            <select id="language-select">
+        <h1 data-i18n="title">Quran Learning Game</h1>
+        <div class="header-controls">
+            <select id="language-select" class="language-select">
                 <option value="en">English</option>
                 <option value="bn">বাংলা</option>
             </select>
         </div>
-        <h1 data-i18n="header_title">80/20 Quran Vocabulary</h1>
-        <p data-i18n="header_subtitle">Master the most frequent words of the Quran.</p>
-        <div id="loading" class="loading" data-i18n="loading_text">Loading data...</div>
+        <nav>
+            <button id="nav-dashboard" class="nav-btn active" data-i18n="dashboard">Dashboard</button>
+            <button id="nav-browse" class="nav-btn" data-i18n="browse">Browse Words</button>
+        </nav>
     </header>
 
     <main>
-        <section id="global-section">
-            <h2 data-i18n="global_section_title">High Frequency Deck (Top 50)</h2>
-            <p class="subtitle" data-i18n="global_section_subtitle">These words appear most frequently throughout the Quran.</p>
-            <div id="global-deck" class="card-grid"></div>
+        <!-- Loading State -->
+        <div id="loading-screen" class="screen">
+            <div class="loader"></div>
+            <p id="loading-text" data-i18n="initializing">Initializing Database...</p>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <section id="dashboard-screen" class="screen hidden">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3 data-i18n="level">Level</h3>
+                    <div id="user-level" class="stat-value">1</div>
+                    <div class="xp-bar-container">
+                        <div id="xp-bar-fill" class="xp-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <p id="user-xp" class="stat-sub">0 XP</p>
+                </div>
+                <div class="stat-card">
+                    <h3 data-i18n="streak">Streak</h3>
+                    <div id="user-streak" class="stat-value">0</div>
+                    <p class="stat-sub" data-i18n="days">Days</p>
+                </div>
+                <div class="stat-card">
+                    <h3 data-i18n="mastery">Mastery</h3>
+                    <div id="user-mastery" class="stat-value">0%</div>
+                    <p class="stat-sub" data-i18n="of_top">of Top 80%</p>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button id="start-session-btn" class="primary-btn pulse" data-i18n="start_session">Start Daily Session</button>
+                <p class="session-info" data-i18n="session_info">Review 10 words to keep your streak!</p>
+            </div>
         </section>
 
-        <section id="surah-section">
-            <h2 data-i18n="surah_section_title">Surah Specific Prep</h2>
-            <div class="controls">
-                <label for="surah-select" data-i18n="surah_select_label">Select a Surah:</label>
-                <select id="surah-select">
-                    <option value="" disabled selected data-i18n="surah_select_default">Choose a Surah...</option>
-                </select>
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen hidden">
+            <div class="game-header">
+                <span id="session-progress">Word 1/10</span>
+                <button id="quit-session" class="text-btn" data-i18n="quit">Quit</button>
             </div>
-            <p class="subtitle" data-i18n="surah_section_subtitle">Top 20 frequent words in the selected Surah.</p>
-            <div id="surah-deck" class="card-grid"></div>
+
+            <div class="flashcard-container">
+                <div id="flashcard" class="flashcard">
+                    <div class="flashcard-front">
+                        <div id="card-arabic" class="arabic-word">...</div>
+                        <p class="tap-hint" data-i18n="tap_hint">(Tap to flip)</p>
+                    </div>
+                    <div class="flashcard-back">
+                        <div id="card-english" class="english-meaning">...</div>
+                        <div id="card-stats" class="frequency-count">...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-controls" class="game-controls hidden">
+                <button class="rating-btn hard" data-rating="hard" data-i18n="hard">Hard (+5 XP)</button>
+                <button class="rating-btn good" data-rating="good" data-i18n="good">Good (+10 XP)</button>
+                <button class="rating-btn easy" data-rating="easy" data-i18n="easy">Easy (+15 XP)</button>
+            </div>
+        </section>
+
+        <!-- Browse Screen (Original Features) -->
+        <section id="browse-screen" class="screen hidden">
+            <div class="browse-controls">
+                <div class="control-group">
+                    <h3 data-i18n="global_top">Global Top 50</h3>
+                    <p data-i18n="global_desc">Most frequent words excluding particles.</p>
+                    <div id="global-deck" class="card-grid"></div>
+                </div>
+
+                <div class="control-group">
+                    <h3 data-i18n="surah_filter">Surah Filter</h3>
+                    <select id="surah-select">
+                        <option value="" disabled selected data-i18n="choose_surah">Choose a Surah...</option>
+                    </select>
+                    <div id="surah-deck" class="card-grid"></div>
+                </div>
+            </div>
         </section>
     </main>
 
