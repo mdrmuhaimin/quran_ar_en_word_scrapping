@@ -1,14 +1,93 @@
+const UI_TRANSLATIONS = {
+    en: {
+        title: "Quran Learning Game",
+        dashboard: "Dashboard",
+        browse: "Browse Words",
+        initializing: "Initializing Database...",
+        level: "Level",
+        streak: "Streak",
+        mastery: "Mastery",
+        days: "Days",
+        of_top: "of Top 80%",
+        start_session: "Start Daily Session",
+        session_info: "Review 10 words to keep your streak!",
+        word_progress: "Word",
+        quit: "Quit",
+        tap_hint: "(Tap to flip)",
+        hard: "Hard (+5 XP)",
+        good: "Good (+10 XP)",
+        easy: "Easy (+15 XP)",
+        global_top: "Global Top 50",
+        global_desc: "Most frequent words excluding particles.",
+        surah_filter: "Surah Filter",
+        choose_surah: "Choose a Surah...",
+        surah_freq: "Surah Freq",
+        global_freq: "Global Freq",
+        session_complete: "Session Complete! Great job.",
+        no_words: "No words available! Database empty?"
+    },
+    bn: {
+        title: "কুরআন শিক্ষা গেম",
+        dashboard: "ড্যাশবোর্ড",
+        browse: "শব্দ ব্রাউজ করুন",
+        initializing: "ডেটাবেস লোড হচ্ছে...",
+        level: "লেভেল",
+        streak: "স্ট্রিক",
+        mastery: "দক্ষতা",
+        days: "দিন",
+        of_top: "শীর্ষ ৮০% এর",
+        start_session: "দৈনিক সেশন শুরু করুন",
+        session_info: "স্ট্রিক ধরে রাখতে ১০টি শব্দ অনুশীলন করুন!",
+        word_progress: "শব্দ",
+        quit: "প্রস্থান",
+        tap_hint: "(উল্টাতে ট্যাপ করুন)",
+        hard: "কঠিন (+৫ XP)",
+        good: "ভালো (+১০ XP)",
+        easy: "সহজ (+১৫ XP)",
+        global_top: "গ্লোবাল শীর্ষ ৫০",
+        global_desc: "সবচেয়ে বেশি ব্যবহৃত শব্দসমূহ।",
+        surah_filter: "সূরা ফিল্টার",
+        choose_surah: "একটি সূরা বাছুন...",
+        surah_freq: "সূরা ফ্রিকোয়েন্সি",
+        global_freq: "গ্লোবাল ফ্রিকোয়েন্সি",
+        session_complete: "সেশন সম্পন্ন! দারুণ কাজ।",
+        no_words: "কোনো শব্দ পাওয়া যায়নি! ডেটাবেস খালি?"
+    }
+};
+
+const SURAH_NAMES_BN = [
+    "আল-ফাতিহা", "আল-বাকারা", "আলে-ইমরান", "আন-নিসা", "আল-মায়িদাহ", "আল-আনআম", "আল-আরাফ", "আল-আনফাল", "আত-তাওবাহ", "ইউনাস",
+    "হুদ", "ইউসুফ", "আর-রাদ", "ইব্রাহীম", "আল-হিজর", "আন-নাহল", "বনী-ইসরাঈল", "আল-কাহফ", "মারইয়াম", "ত্ব-হা",
+    "আল-আম্বিয়া", "আল-হজ্জ", "আল-মুমিনুন", "আন-নূর", "আল-ফুরকান", "আশ-শুকারা", "আন-নামল", "আল-কাসাস", "আল-আনকাবুত", "আর-রূম",
+    "লোকমান", "আস-সেজদাহ", "আল-আহযাব", "সাবা", "ফাতির", "ইয়াসীন", "আস-সাফফাত", "সাদ", "আয-যুমার", "আল-মুমিন",
+    "হা-মীম সেজদাহ", "আশ-শূরা", "আয-যুখরুফ", "আদ-দুখাত", "আল-জাসিয়া", "আল-আহক্বাফ", "মুহাম্মদ", "আল-ফাতহ", "আল-হুজুরাত", "ক্বাফ",
+    "আয-যারিয়াত", "আত্ব-তূর", "আন-নাজম", "আল-ক্বামার", "আর-রাহমান", "আল-ওয়াকিয়াহ", "আল-হাদীদ", "আল-মুজাদালাহ", "আল-হাশর", "আল-মুমতাহিনাহ",
+    "আস-সাফ", "আল-জুমুআহ", "আল-মুনাফিকুন", "আত-তাগাবুন", "আত-ত্বালাক", "আত-তাহরীম", "আল-মুলক", "আল-কলম", "আল-হাক্কাহ", "আল-মাআরিজ",
+    "নূহ", "আল-জ্বিন", "আল-মুজ্জাম্মিল", "আল-মুদ্দাসসির", "আল-কিয়ামাহ", "আল-ইনসান", "আল-মুরসালাত", "আন-নাবা", "আন-নাজিয়াত", "আবাসা",
+    "আত-তাকভীর", "আল-ইনফিতার", "আল-মুতাফফিফীন", "আল-ইনশিকাক", "আল-বুরুজ", "আত-তারিক", "আল-আলা", "আল-গাশিয়াহ", "আল-ফজর", "আল-বালাদ",
+    "আশ-শামস", "আল-লাইল", "আদ-দোহা", "আল-ইনশিরাহ", "আত-তীন", "আল-আলাক", "আল-কদর", "আল-বাইয়্যিনাহ", "আল-যিলযাল", "আল-আদিয়াত",
+    "আল-কারিআহ", "আত-তাকাসুর", "আল-আসর", "আল-হুমাযাহ", "আল-ফীল", "কুরাইশ", "আল-মাউন", "আল-কাউসার", "আল-কাফিরুন", "আন-নাসর",
+    "আল-লাহাব", "আল-ইখলাস", "আল-ফালাক", "আন-নাস"
+];
+
 const App = {
     // State
     sessionWords: [],
     currentWordIndex: 0,
     currentWord: null,
     isFlipped: false,
+    currentLanguage: 'en',
 
     async init() {
         console.log("App initializing...");
         try {
             await DB.init();
+
+            // Load saved language
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && UI_TRANSLATIONS[savedLang]) {
+                this.currentLanguage = savedLang;
+            }
 
             // Check streak on login
             this.handleLogin();
@@ -16,16 +95,61 @@ const App = {
             this.updateDashboard();
             this.setupEventListeners();
 
+            // Initialize Language and Apply
+            this.initLanguageSelector();
+            this.applyLanguage(this.currentLanguage);
+
             // Switch to dashboard
             document.getElementById('loading-screen').classList.add('hidden');
             document.getElementById('dashboard-screen').classList.remove('hidden');
 
-            // Initialize Browse Dropdown
-            this.initSurahSelector();
-
         } catch (e) {
             console.error("Initialization failed:", e);
             document.getElementById('loading-text').textContent = "Error: " + e.message;
+        }
+    },
+
+    initLanguageSelector() {
+        const selector = document.getElementById('language-select');
+        if(selector) {
+            selector.value = this.currentLanguage;
+            selector.addEventListener('change', (e) => {
+                this.applyLanguage(e.target.value);
+            });
+        }
+    },
+
+    applyLanguage(lang) {
+        this.currentLanguage = lang;
+        localStorage.setItem('preferredLanguage', lang);
+        const t = UI_TRANSLATIONS[lang];
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if(t[key]) {
+                if(el.tagName === 'INPUT' && el.type === 'placeholder') {
+                    el.placeholder = t[key];
+                } else {
+                    el.textContent = t[key];
+                }
+            }
+        });
+
+        // Update Surah selector
+        this.initSurahSelector();
+
+        // Update active card content if game is active
+        if(!document.getElementById('game-screen').classList.contains('hidden')) {
+            this.showCard();
+        }
+
+        // Update browse screen content if active
+        if(!document.getElementById('browse-screen').classList.contains('hidden')) {
+            const surahSelect = document.getElementById('surah-select');
+            if(surahSelect.value) {
+                this.renderSurahDeck(surahSelect.value);
+            }
+            this.renderGlobalDeck();
         }
     },
 
@@ -73,7 +197,7 @@ const App = {
     startSession() {
         this.sessionWords = DB.getDailyWords(10);
         if (this.sessionWords.length === 0) {
-            alert("No words available! Database empty?");
+            alert(UI_TRANSLATIONS[this.currentLanguage].no_words);
             return;
         }
 
@@ -95,10 +219,14 @@ const App = {
         document.getElementById('game-controls').classList.add('hidden');
 
         document.getElementById('card-arabic').textContent = this.currentWord.arabic;
-        document.getElementById('card-english').textContent = this.currentWord.english;
+        // Language aware meaning
+        const meaning = this.currentLanguage === 'bn' ? this.currentWord.bengali : this.currentWord.english;
+        document.getElementById('card-english').textContent = meaning;
+
         document.getElementById('card-stats').textContent = `Freq: ${this.currentWord.frequency}`;
 
-        document.getElementById('session-progress').textContent = `Word ${this.currentWordIndex + 1}/${this.sessionWords.length}`;
+        const progressText = UI_TRANSLATIONS[this.currentLanguage].word_progress || "Word";
+        document.getElementById('session-progress').textContent = `${progressText} ${this.currentWordIndex + 1}/${this.sessionWords.length}`;
     },
 
     flipCard() {
@@ -138,7 +266,7 @@ const App = {
     },
 
     endSession() {
-        alert("Session Complete! Great job.");
+        alert(UI_TRANSLATIONS[this.currentLanguage].session_complete);
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('dashboard-screen').classList.remove('hidden');
         this.updateDashboard();
@@ -146,8 +274,16 @@ const App = {
 
     initSurahSelector() {
         const select = document.getElementById('surah-select');
-        // Reuse the list from original script.js or DB?
-        // Let's copy the list here to avoid global pollution or import issues
+        const selectedValue = select.value;
+        select.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        defaultOption.textContent = UI_TRANSLATIONS[this.currentLanguage].choose_surah;
+        select.appendChild(defaultOption);
+
         const SURAH_NAMES = [
             "Al-Fatihah", "Al-Baqarah", "Al-Imran", "An-Nisa", "Al-Ma'idah", "Al-An'am", "Al-A'raf", "Al-Anfal", "At-Tawbah", "Yunus",
             "Hud", "Yusuf", "Ar-Ra'd", "Ibrahim", "Al-Hijr", "An-Nahl", "Al-Isra", "Al-Kahf", "Maryam", "Ta-Ha",
@@ -163,17 +299,28 @@ const App = {
             "Al-Masad", "Al-Ikhlas", "Al-Falaq", "An-Nas"
         ];
 
-        SURAH_NAMES.forEach((name, index) => {
+        const names = this.currentLanguage === 'bn' ? SURAH_NAMES_BN : SURAH_NAMES;
+
+        names.forEach((name, index) => {
             const option = document.createElement('option');
             option.value = index + 1;
             option.textContent = `Surah ${index + 1} (${name})`;
             select.appendChild(option);
         });
 
-        select.addEventListener('change', (e) => {
-            const surahId = parseInt(e.target.value);
-            this.renderSurahDeck(surahId);
-        });
+        if(selectedValue) {
+            select.value = selectedValue;
+        }
+
+        // Only add listener once or check if it exists?
+        // We are clearing innerHTML so options are new, but the element is same.
+        // The listener is attached to the element in init(), so we should be careful not to attach duplicates if we call this multiple times.
+        // Actually, initSurahSelector is called in applyLanguage.
+        // So we should move the event listener attachment OUT of this function or ensure it's idempotent.
+        // The event listener was attached in init() via initSurahSelector?
+        // In my previous app.js code, initSurahSelector added the listener.
+        // I will change it so initSurahSelector only populates options.
+        // And setupEventListeners attaches the change event.
     },
 
     renderSurahDeck(surahId) {
@@ -201,9 +348,14 @@ const App = {
     createStaticCard(item, rank) {
         // Reuse similar HTML structure but simpler for browsing
         const card = document.createElement('div');
+        const surahFreqLabel = UI_TRANSLATIONS[this.currentLanguage].surah_freq;
+        const globalFreqLabel = UI_TRANSLATIONS[this.currentLanguage].global_freq;
+
         const countDisplay = item.local_count !== undefined
-            ? `Surah Freq: ${item.local_count}`
-            : `Global Freq: ${item.frequency}`;
+            ? `${surahFreqLabel}: ${item.local_count}`
+            : `${globalFreqLabel}: ${item.frequency}`;
+
+        const meaning = this.currentLanguage === 'bn' ? item.bengali : item.english;
 
         card.className = 'card';
         card.innerHTML = `
@@ -213,7 +365,7 @@ const App = {
                     <div class="arabic-word">${item.arabic}</div>
                 </div>
                 <div class="card-back">
-                    <div class="english-meaning">${item.english}</div>
+                    <div class="english-meaning">${meaning}</div>
                     <div class="frequency-count">${countDisplay}</div>
                 </div>
             </div>
@@ -247,6 +399,12 @@ const App = {
                 const rating = e.target.dataset.rating;
                 this.answerCard(rating);
             });
+        });
+
+        // Surah Select
+        document.getElementById('surah-select').addEventListener('change', (e) => {
+            const surahId = parseInt(e.target.value);
+            this.renderSurahDeck(surahId);
         });
     },
 
