@@ -345,6 +345,11 @@ const App = {
         });
     },
 
+    toBengaliNumerals(n) {
+        const bnNums = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return n.toString().replace(/\d/g, d => bnNums[d]);
+    },
+
     createStaticCard(item, rank) {
         // Reuse similar HTML structure but simpler for browsing
         const card = document.createElement('div');
@@ -356,10 +361,11 @@ const App = {
             : `${globalFreqLabel}: ${item.frequency}`;
 
         const meaning = this.currentLanguage === 'bn' ? item.bengali : item.english;
+        const displayRank = this.currentLanguage === 'bn' ? this.toBengaliNumerals(rank) : rank;
 
         card.className = 'card';
         card.innerHTML = `
-            <span class="badge">#${rank}</span>
+            <span class="badge">#${displayRank}</span>
             <div class="card-content">
                 <div class="card-front">
                     <div class="arabic-word">${item.arabic}</div>
