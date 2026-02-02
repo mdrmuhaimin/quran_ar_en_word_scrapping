@@ -14,6 +14,74 @@ const SURAH_NAMES = [
     "Al-Masad", "Al-Ikhlas", "Al-Falaq", "An-Nas"
 ];
 
+// Bengali Surah Names
+const SURAH_NAMES_BN = [
+    "আল-ফাতিহা", "আল-বাকারা", "আলে-ইমরান", "আন-নিসা", "আল-মায়িদাহ", "আল-আনআম", "আল-আরাফ", "আল-আনফাল", "আত-তাওবাহ", "ইউনুস",
+    "হুদ", "ইউসুফ", "আর-রা'দ", "ইব্রাহীম", "আল-হিজর", "আন-নাহল", "আল-ইসরা", "আল-কাহফ", "মারইয়াম", "ত্ব-হা",
+    "আল-আম্বিয়া", "আল-হাজ্জ", "আল-মুমিনুন", "আন-নূর", "আল-ফুরকান", "আশ-শুআরা", "আন-নামল", "আল-কাসাস", "আল-আনকাবুত", "আর-রূম",
+    "লোকমান", "আস-সাজদাহ", "আল-আহযাব", "সাবা", "ফাতির", "ইয়াসীন", "আস-সাফফাত", "সাদ", "আয-যুমার", "গাফির",
+    "ফুসসিলাত", "আশ-শূরা", "আয-যুখরুফ", "আদ-দুখান", "আল-জাসিয়াহ", "আল-আহকাফ", "মুহাম্মদ", "আল-ফাতহ", "আল-হুজুরাত", "ক্বাফ",
+    "আয-যারিয়াত", "আত-তূর", "আন-নাজম", "আল-কামার", "আর-রাহমান", "আল-ওয়াকিয়াহ", "আল-হাদীদ", "আল-মুজাদালাহ", "আল-হাশর", "আল-মুমতাহিনাহ",
+    "আস-সাফ", "আল-জুমুআহ", "আল-মুনাফিকুন", "আত-তাগাবুন", "আত-তালাক", "আত-তাহরীম", "আল-মুলক", "আল-কলম", "আল-হাক্কাহ", "আল-মাআরিজ",
+    "নূহ", "আল-জিন্ন", "আল-মুজ্জাম্মিল", "আল-মুদ্দাসসির", "আল-কিয়ামাহ", "আল-ইনসান", "আল-মুরসালাত", "আন-নাবা", "আন-নাযিয়াত", "আবাসা",
+    "আত-তাকভীর", "আল-ইনফিতার", "আল-মুতাফফিফীন", "আল-ইনশিকাক", "আল-বুরুজ", "আত-তারিক", "আল-আলা", "আল-গাশিয়াহ", "আল-ফজর", "আল-বালাদ",
+    "আশ-শামস", "আল-লাইল", "আদ-দুহা", "আশ-শারহ", "আত-তীন", "আল-আলাক", "আল-কদর", "আল-বাইয়িনাহ", "আয-যালযালাহ", "আল-আদিয়াত",
+    "আল-কারিয়াহ", "আত-তাকাসুর", "আল-আসর", "আল-হুমাজাহ", "আল-ফীল", "কুরাইশ", "আল-মাউন", "আল-কাউসার", "আল-কাফিরুন", "আন-নাসর",
+    "আল-মাসাদ", "আল-ইখলাস", "আল-ফালাক", "আন-নাস"
+];
+
+// UI Translations
+const UI_TRANSLATIONS = {
+    "header_title": {
+        "en": "80/20 Quran Vocabulary",
+        "bn": "৮০/২০ কুরআন শব্দভাণ্ডার"
+    },
+    "header_subtitle": {
+        "en": "Master the most frequent words of the Quran.",
+        "bn": "কুরআনের সবচেয়ে বহুল ব্যবহৃত শব্দগুলি শিখুন।"
+    },
+    "loading_text": {
+        "en": "Loading data...",
+        "bn": "ডেটা লোড হচ্ছে..."
+    },
+    "global_section_title": {
+        "en": "High Frequency Deck (Top 50)",
+        "bn": "সর্বাধিক ব্যবহৃত শব্দ (শীর্ষ ৫০)"
+    },
+    "global_section_subtitle": {
+        "en": "These words appear most frequently throughout the Quran.",
+        "bn": "এই শব্দগুলি কুরআনে সবচেয়ে বেশিবার এসেছে।"
+    },
+    "surah_section_title": {
+        "en": "Surah Specific Prep",
+        "bn": "সূরা ভিত্তিক প্রস্তুতি"
+    },
+    "surah_select_label": {
+        "en": "Select a Surah:",
+        "bn": "একটি সূরা নির্বাচন করুন:"
+    },
+    "surah_select_default": {
+        "en": "Choose a Surah...",
+        "bn": "একটি সূরা চয়ন করুন..."
+    },
+    "surah_section_subtitle": {
+        "en": "Top 20 frequent words in the selected Surah.",
+        "bn": "নির্বাচিত সূরার শীর্ষ ২০টি বহুল ব্যবহৃত শব্দ।"
+    },
+    "card_click_reveal": {
+        "en": "(Click to reveal)",
+        "bn": "(দেখতে ক্লিক করুন)"
+    },
+    "card_occurrences": {
+        "en": "Occurrences",
+        "bn": "ব্যবহার সংখ্যা"
+    },
+    "no_data_surah": {
+        "en": "No data found for this Surah.",
+        "bn": "এই সূরার জন্য কোন তথ্য পাওয়া যায়নি."
+    }
+};
+
 // Common particles to exclude from "High Frequency" deck
 const STOP_WORDS = [
     "فِي", "ٱلَّذِينَ", "مِن", "مَا", "لَا", "وَلَا", "إِنَّ", "إِلَّا", "وَمَا", "أَن", "مِنَ", "عَلَىٰ", "ثُمَّ", "مِّن", "مِّنَ", "يَٰٓأَيُّهَا", "إِذَا"
@@ -23,13 +91,50 @@ const DATA_FILE = 'quran_word_translation.tsv';
 
 let allRows = [];
 let globalWordCounts = {}; // word -> count
-let globalWordMeanings = {}; // word -> english meaning (taking the most frequent one or first one)
+let globalWordMeanings = {}; // word -> { en: ..., bn: ... }
 let surahData = {}; // surahId -> Array of rows
+let currentLanguage = localStorage.getItem('language') || 'en';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initLanguageSelector();
+    applyLanguage(); // Apply language immediately
     fetchData();
     initSurahSelector();
 });
+
+function initLanguageSelector() {
+    const select = document.getElementById('language-select');
+    select.value = currentLanguage;
+    select.addEventListener('change', (e) => {
+        currentLanguage = e.target.value;
+        localStorage.setItem('language', currentLanguage);
+        applyLanguage();
+    });
+}
+
+function applyLanguage() {
+    document.documentElement.lang = currentLanguage;
+
+    // Update static text
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (UI_TRANSLATIONS[key] && UI_TRANSLATIONS[key][currentLanguage]) {
+            el.textContent = UI_TRANSLATIONS[key][currentLanguage];
+        }
+    });
+
+    // Re-render components if data is loaded
+    if (allRows.length > 0) {
+        renderSurahSelector(); // Update surah names
+        renderGlobalTop50();
+
+        // If a surah is selected, re-render that too
+        const surahSelect = document.getElementById('surah-select');
+        if (surahSelect.value) {
+            renderSurahTop20(parseInt(surahSelect.value));
+        }
+    }
+}
 
 function fetchData() {
     Papa.parse(DATA_FILE, {
@@ -53,10 +158,12 @@ function processData(data) {
     allRows = data;
     globalWordCounts = {};
     surahData = {};
+    globalWordMeanings = {};
 
     data.forEach(row => {
         const word = row.ar;
-        const meaning = row.en;
+        const meaningEn = row.en;
+        const meaningBn = row.bn;
         const surahId = parseInt(row.surah);
 
         if (!word) return;
@@ -64,7 +171,7 @@ function processData(data) {
         // Global counts
         if (!globalWordCounts[word]) {
             globalWordCounts[word] = 0;
-            globalWordMeanings[word] = meaning; // Store first meaning found
+            globalWordMeanings[word] = { en: meaningEn, bn: meaningBn };
         }
         globalWordCounts[word]++;
 
@@ -75,6 +182,7 @@ function processData(data) {
         surahData[surahId].push(row);
     });
 
+    renderSurahSelector();
     renderGlobalTop50();
 }
 
@@ -87,7 +195,7 @@ function renderGlobalTop50() {
         .map(word => ({
             ar: word,
             count: globalWordCounts[word],
-            en: globalWordMeanings[word]
+            meaning: globalWordMeanings[word][currentLanguage] || globalWordMeanings[word]['en']
         }))
         .sort((a, b) => b.count - a.count);
 
@@ -105,13 +213,7 @@ function renderGlobalTop50() {
 
 function initSurahSelector() {
     const select = document.getElementById('surah-select');
-
-    SURAH_NAMES.forEach((name, index) => {
-        const option = document.createElement('option');
-        option.value = index + 1; // Surah IDs are 1-based
-        option.textContent = `Surah ${index + 1} (${name})`;
-        select.appendChild(option);
-    });
+    renderSurahSelector();
 
     select.addEventListener('change', (e) => {
         const surahId = parseInt(e.target.value);
@@ -119,12 +221,43 @@ function initSurahSelector() {
     });
 }
 
+function renderSurahSelector() {
+    const select = document.getElementById('surah-select');
+    const selectedValue = select.value; // Preserve selection
+
+    // Keep the first option (placeholder) or recreate it
+    // Better to recreate to ensure text is updated
+    select.innerHTML = '';
+
+    const placeholder = document.createElement('option');
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = UI_TRANSLATIONS['surah_select_default'][currentLanguage];
+    select.appendChild(placeholder);
+
+    const names = currentLanguage === 'bn' ? SURAH_NAMES_BN : SURAH_NAMES;
+
+    names.forEach((name, index) => {
+        const option = document.createElement('option');
+        option.value = index + 1; // Surah IDs are 1-based
+        option.textContent = currentLanguage === 'bn'
+            ? `সূরা ${index + 1} (${name})`
+            : `Surah ${index + 1} (${name})`;
+        select.appendChild(option);
+    });
+
+    if (selectedValue) {
+        select.value = selectedValue;
+    }
+}
+
 function renderSurahTop20(surahId) {
     const container = document.getElementById('surah-deck');
     container.innerHTML = '';
 
     if (!surahData[surahId]) {
-        container.innerHTML = '<p>No data found for this Surah.</p>';
+        container.innerHTML = `<p>${UI_TRANSLATIONS['no_data_surah'][currentLanguage]}</p>`;
         return;
     }
 
@@ -136,7 +269,7 @@ function renderSurahTop20(surahId) {
         const word = row.ar;
         if (!localCounts[word]) {
             localCounts[word] = 0;
-            localMeanings[word] = row.en;
+            localMeanings[word] = currentLanguage === 'bn' ? row.bn : row.en;
         }
         localCounts[word]++;
     });
@@ -146,12 +279,10 @@ function renderSurahTop20(surahId) {
         .map(word => ({
             ar: word,
             count: localCounts[word],
-            en: localMeanings[word]
+            meaning: localMeanings[word]
         }))
         .sort((a, b) => b.count - a.count);
 
-    // Filter stop words? The prompt says "Top 20 most frequent words specifically found in that Surah".
-    // Usually, we keep filtering stop words to show meaningful vocab.
     const filteredWords = sortedWords.filter(item => !STOP_WORDS.includes(item.ar));
 
     const top20 = filteredWords.slice(0, 20);
@@ -166,16 +297,19 @@ function createCard(item, rank) {
     const card = document.createElement('div');
     card.className = 'card';
 
+    const clickToReveal = UI_TRANSLATIONS['card_click_reveal'][currentLanguage];
+    const occurrencesLabel = UI_TRANSLATIONS['card_occurrences'][currentLanguage];
+
     card.innerHTML = `
         <span class="badge">#${rank}</span>
         <div class="card-content">
             <div class="card-front">
                 <div class="arabic-word">${item.ar}</div>
-                <div style="font-size: 0.8rem; color: #999;">(Click to reveal)</div>
+                <div style="font-size: 0.8rem; color: #999;">${clickToReveal}</div>
             </div>
             <div class="card-back">
-                <div class="english-meaning">${item.en}</div>
-                <div class="frequency-count">Occurrences: ${item.count}</div>
+                <div class="english-meaning">${item.meaning}</div>
+                <div class="frequency-count">${occurrencesLabel}: ${item.count}</div>
             </div>
         </div>
     `;
